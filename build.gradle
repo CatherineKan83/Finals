@@ -1,0 +1,53 @@
+// build.gradle (модуль app)
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android' // если используется Kotlin
+}
+
+android {
+    compileSdk 34  // Установите нужную версию
+
+    defaultConfig {
+        applicationId "com.example.passwordmanager" // укажите свой ID
+        minSdk 21 // минимальная поддерживаемая версия Android
+        targetSdk 34 // целевая версия Android
+
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Если использовался Kotlin, добавляем настройки Kotlin
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    // Основные зависимости для Android
+    implementation 'androidx.appcompat:appcompat:1.6.1' // для поддержки старых версий Android
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // для ConstraintLayout
+
+    // Для работы с базой данных SQLite
+    implementation 'androidx.room:room-runtime:2.5.0'
+    annotationProcessor 'androidx.room:room-compiler:2.5.0' // для компилятора Room
+
+    // Для хэширования и работы с паролями
+    implementation 'org.apache.commons:commons-codec:1.15' // для кодирования паролей
+
+    // Для работы с аутентификацией и другими зависимостями
+    implementation 'com.google.android.material:material:1.8.0' // для элементов Material Design
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0' // для работы с жизненным циклом
+
+    // Для Unit-тестов
+    testImplementation 'junit:junit:4.13.2'
+
+    // Для интеграции с Kotlin (если используете)
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.8.20'
+}
